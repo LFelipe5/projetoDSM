@@ -7,6 +7,9 @@ void main() {
 }
 
 class Tela2 extends StatelessWidget {
+  final TextEditingController tituloController = TextEditingController();
+  final TextEditingController descricaoController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,6 +86,7 @@ class Tela2 extends StatelessWidget {
                 left: 39,
                 top: 267,
                 child: TextField(
+                  controller: tituloController,
                   decoration: InputDecoration(
                     hintText: 'Título',
                     hintStyle: TextStyle(
@@ -100,6 +104,7 @@ class Tela2 extends StatelessWidget {
                 left: 39,
                 top: 330,
                 child: TextField(
+                  controller: descricaoController,
                   decoration: InputDecoration(
                     hintText: 'Descrição',
                     hintStyle: TextStyle(
@@ -131,148 +136,34 @@ class Tela2 extends StatelessWidget {
                 height: 29,
                 left: 177,
                 top: 785,
-                child: Text(
-                  'Salvar',
-                  style: TextStyle(
-                    fontFamily: 'Sitara',
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Tela3 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFF6ECC9),
-      body: Center(
-        child: Container(
-          width: 390,
-          height: 844,
-          decoration: BoxDecoration(
-            color: Color(0xFFF6ECC9),
-            borderRadius: BorderRadius.circular(19),
-          ),
-          child: Stack(
-            children: [
-              Positioned(
-                width: 54,
-                height: 32,
-                left: 39,
-                top: 333,
-                child: Text(
-                  'Título',
-                  style: TextStyle(
-                    fontFamily: 'Sitara',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                    height: 1.6,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              Positioned(
-                width: 92,
-                height: 32,
-                left: 39,
-                top: 401,
-                child: Text(
-                  'Descrição',
-                  style: TextStyle(
-                    fontFamily: 'Sitara',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                    height: 1.6,
-                    color: Color.fromRGBO(0, 0, 0, 0.5),
-                  ),
-                ),
-              ),
-              Positioned(
-                width: 390,
-                height: 83,
-                left: 0,
-                top: 0,
-                child: Container(
-                  color: Color(0xFFF6ECC9),
-                ),
-              ),
-              Positioned(
-                width: 15.8,
-                height: 1,
-                left: 32.3,
-                top: 37,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color(0xFFF6ECC9),
-                      width: 1,
+                child: InkWell(
+                  onTap: () {
+                    String titulo = tituloController.text;
+                    String descricao = descricaoController.text;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Tela3(
+                          titulo: titulo,
+                          descricao: descricao,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                  ),
-                ),
-              ),
-              Positioned(
-                width: 14.43,
-                height: 1,
-                left: 32.3,
-                top: 57,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color(0xFFF6ECC9),
-                      width: 1,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                width: 335,
-                height: 177,
-                left: 27,
-                top: 108,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('image.jpg'),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.circular(18),
-                  ),
-                ),
-              ),
-              Positioned(
-                width: 21,
-                height: 21,
-                left: 295,
-                top: 33,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('editar.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                width: 22,
-                height: 22,
-                left: 334,
-                top: 33,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('lixeira.png'),
-                      fit: BoxFit.cover,
+                    child: Center(
+                      child: Text(
+                        'Salvar',
+                        style: TextStyle(
+                          fontFamily: 'Sitara',
+                          fontSize: 18,
+                          color: Colors.white, // Cor do texto
+                        ),
+                      ),
                     ),
                   ),
                 ),
